@@ -8,12 +8,16 @@ import imagesProjetosControllers from './controllers/imagesProjetosControllers'
 import postsControllers from './controllers/postsControllers'
 import projetosControllers from './controllers/projetosControllers'
 import usuariosControllers from './controllers/usuariosControllers'
+import sessionControllers from './controllers/sessionControllers'
 
 
 const Route = express.Router()
 
 const uploads = multer(uploadsConfig)
 const uploadForPost = multer(uploadsForPostConfig)
+
+
+Route.post('/session/login', sessionControllers.Login)
 
 
 Route.get('/usuarios', usuariosControllers.index)

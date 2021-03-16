@@ -1,11 +1,11 @@
 export type Usuario = {
-    id: number
+    id?: number
 
 
-    name: string
+    name?: string
 
 
-    funcao: string
+    funcao?: string
 
 
     email: string

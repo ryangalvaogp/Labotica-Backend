@@ -1,0 +1,29 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@types/cors": "^2.8.10",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "knex": "^0.95.2",
+    "multer": "^1.4.2",
+    "sharp": "^0.27.2",
+    "socket.io": "^3.1.2",
+    "sqlite3": "^5.0.2",
+    "typeorm": "^0.2.31"
+  },
+  "scripts": {
+    "dev": "ts-node-dev --transpile-only --inspect  --ignore-watch node_modules src/server.ts",
+    "typeorm":"ts-node-dev ./node_modules/typeorm/cli.js"
+
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.11",
+    "@types/multer": "^1.4.5",
+    "@types/sharp": "^0.27.1",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.2.3"
+  }
+}

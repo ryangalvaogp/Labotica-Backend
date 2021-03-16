@@ -15,9 +15,16 @@ export default {
         const { titulo, descricao, carrousel } = req.body;
         const requestImages = req.files as Express.Multer.File[]
         const images = requestImages.map(image => {
+           
+            const {filename} = image
+
+            const [name] =filename.split('.');
+
+            const caminho = `${name}.jpg`;
+
             return {
                 id: crypto.randomBytes(3).toString('hex'),
-                caminho: image.path,
+                caminho,
                 imgDefault: false
             }
         })

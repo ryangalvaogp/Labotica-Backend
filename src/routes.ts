@@ -9,6 +9,7 @@ import postsControllers from './controllers/postsControllers'
 import projetosControllers from './controllers/projetosControllers'
 import usuariosControllers from './controllers/usuariosControllers'
 import sessionControllers from './controllers/sessionControllers'
+import projetoViewsControllers from './controllers/views/projetoViewsControllers'
 
 
 const Route = express.Router()
@@ -38,6 +39,14 @@ Route.get('/post', postsControllers.index)
 Route.post('/post', uploadForPost.single('image') , postsControllers.create)
 
 
+
+//Views
+Route.post('/views/user/projeto/:id', projetoViewsControllers.allProjetosOfUser)
+Route.post('/views/user/projeto/images/:id', projetoViewsControllers.imagesOfProjetoOfUser)
+
+
+
+
 //Rotas Estáticas
 Route.use('/files/posts',
     express.static(
@@ -47,6 +56,15 @@ Route.use('/files/posts',
             'uploads',
             'posts',
             'resized'
+        )
+    )
+)
+Route.use('/files/projetos',
+    express.static(
+        path.resolve(
+            __dirname,
+            '..',
+            'uploads'
         )
     )
 )

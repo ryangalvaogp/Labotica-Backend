@@ -1,10 +1,8 @@
 import { getRepository } from 'typeorm';
 import Usuarios from '../../models/Usuarios';
-
 import { Usuario } from '../../types/usuario'
 
 export async function getUsuario(Authorization: string | undefined) {
-
     const usuarioRepository = getRepository(Usuarios);
 
     const getOfUsuarioByAuthorization = (
@@ -13,22 +11,21 @@ export async function getUsuario(Authorization: string | undefined) {
                 {
                     where: [
                         {
-                            usuario_Id: Authorization
+                            usuario_Id: Authorization,
                         }
                     ]
                 }
             )
     );
     return getOfUsuarioByAuthorization;
-}
+};
 
 export async function listAllUsuarios() {
     const usuarioRepository = getRepository(Usuarios);
-    const allUsuario = await usuarioRepository.find()
+    const allUsuario = await usuarioRepository.find();
 
-    return allUsuario
-}
-
+    return allUsuario;
+};
 
 export async function Login({ email, password }: Usuario) {
     const usuarioRepository = getRepository(Usuarios);
@@ -39,10 +36,9 @@ export async function Login({ email, password }: Usuario) {
                     email: email,
                     password: password
                 },
-                select:['name','usuario_Id','funcao']
+                select:['name','usuario_Id','funcao', 'matricula']
             }
         )
-    )
-
+    );
     return usuario;
-}
+};

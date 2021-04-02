@@ -1,7 +1,5 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
-
 export class post1615690666984 implements MigrationInterface {
-
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
             name: 'post',
@@ -14,6 +12,10 @@ export class post1615690666984 implements MigrationInterface {
                 {
                     name: 'usuario_Id',
                     type: 'varchar',
+                },
+                {
+                    name: 'titulo',
+                    type: 'varchar'
                 },
                 {
                     name: 'description',
@@ -31,11 +33,6 @@ export class post1615690666984 implements MigrationInterface {
                     name: 'createdAt',
                     type: 'datetime'
                 },
-                {
-                    name: 'likes',
-                    type: 'integer',
-                    default: 0
-                }
             ],
             foreignKeys: [
                 {
@@ -47,14 +44,10 @@ export class post1615690666984 implements MigrationInterface {
                     onUpdate: 'CASCADE'
                 }
             ],
-
-        }
-        )
-        )
-    }
+        }))
+    };
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable('post')
-    }
-
-}
+    };
+};

@@ -1,22 +1,20 @@
 import {Column, PrimaryColumn, Entity, OneToMany, JoinColumn} from 'typeorm'
 import ImgProjetos from './Image';
-
-
 @Entity({name:'projetos'})
 export default class Projetos {
    @PrimaryColumn('varchar')
     projeto_id:string;
 
-    @Column('varchar')
+    @Column()
     titulo:string;
 
-    @Column('varchar')
+    @Column()
     descricao:string;
 
-    @Column('varchar')
-    carrousel:string;
+    @Column()
+    carrousel:boolean;
 
-    @Column('varchar')
+    @Column()
     usuario_Id:string
 
     @OneToMany(()=> ImgProjetos, img=> img.projeto,
@@ -24,9 +22,7 @@ export default class Projetos {
         cascade:['insert', 'update'],
         onUpdate:'CASCADE',
         onDelete:'CASCADE',
-
     })
     @JoinColumn({name:'Projeto_id'})
     images:ImgProjetos[];
-    
-}
+};

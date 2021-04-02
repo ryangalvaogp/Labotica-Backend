@@ -1,11 +1,12 @@
 import { Entity, Column, PrimaryColumn, OneToMany, JoinColumn } from "typeorm";
 import Post from "./Posts";
-
-
 @Entity({name:'Usuarios'})
 export default class Usuarios {
     @PrimaryColumn('varchar')
     usuario_Id: string;
+    
+    @Column('varchar')
+    matricula:number;
 
     @Column('varchar')
     name: string;
@@ -16,19 +17,15 @@ export default class Usuarios {
     @Column('varchar')
     email: string;
 
-    @Column('varchar')
+    @Column('varchar', {select:false})
     password: string;
-
 
     @OneToMany(()=> Post, Post=> Post.usuario,
     {
         cascade:['insert', 'update'],
         onUpdate:'CASCADE',
         onDelete:'CASCADE',
-
     })
     @JoinColumn({name:'usuario_Id'})
     posts:Post[];
-    
-
-}
+};

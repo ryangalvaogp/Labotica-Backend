@@ -20,6 +20,11 @@ const Route = express.Router();
 const uploads = multer(uploadsConfig);
 const uploadForPost = multer(uploadsForPostConfig);
 
+
+Route.get('/', async (req, res)=>{
+return res.json("Funcionando perfeitamente")
+})
+
 Route.post('/session/login', sessionControllers.Login);
 
 Route.get('/usuarios', usuariosControllers.index);

@@ -25,7 +25,7 @@ Route.post('/session/login', sessionControllers.Login);
 Route.get('/usuarios', usuariosControllers.index);
 Route.post('/usuarios', usuariosControllers.create);
 Route.put('/usuarios/:id', usuariosControllers.update);
-Route.put('usuarios/password/:id', usuariosControllers.updatePassword);
+Route.put('/usuarios/password/:id', usuariosControllers.updatePassword);
 Route.delete('/usuarios/:id', usuariosControllers.delete);
 
 Route.get('/projetos', projetosControllers.index);

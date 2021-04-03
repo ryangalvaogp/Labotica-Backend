@@ -16,7 +16,7 @@
     "typeorm": "^0.2.31"
   },
   "scripts": {
-    "start": "node --transpile-only --inspect  --ignore-watch node_modules src/server.ts",
+    "start": "node src/server.ts",
     "dev": "ts-node-dev --transpile-only --inspect  --ignore-watch node_modules src/server.ts",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },

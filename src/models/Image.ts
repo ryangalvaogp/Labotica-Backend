@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn} from "typeorm";
 import Projetos from "./Projetos";
-@Entity({name:'ImgProjetos'})
+@Entity({name:'imgProjetos'})
 export default class ImgProjetos {
     @PrimaryColumn()
     id:string;

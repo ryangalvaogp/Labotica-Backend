@@ -1,6 +1,6 @@
 import {Entity, Column, PrimaryColumn, ManyToOne, JoinColumn} from 'typeorm'
 import Usuarios from './Usuarios';
-@Entity({name:'Post'})
+@Entity({name:'post'})
 export default class Post {
     @PrimaryColumn()
     post_Id:string;

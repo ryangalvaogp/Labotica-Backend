@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryColumn, OneToMany, JoinColumn } from "typeorm";
 import Post from "./Posts";
-@Entity({name:'Usuarios'})
+@Entity({name:'usuarios'})
 export default class Usuarios {
     @PrimaryColumn('varchar')
     usuario_Id: string;

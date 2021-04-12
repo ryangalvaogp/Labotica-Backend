@@ -1,11 +1,13 @@
 {
+    "url":"postgres://krmsewrs:rUvisAlRXoTGJ7G5NrRVHSY87IOAPkZP@tuffi.db.elephantsql.com:5432/krmsewrs",
     "type":"postgres",
     "name": "default",
-    "host": "ec2-54-235-139-166.compute-1.amazonaws.com",
+    "host": "tuffi.db.elephantsql.com",
     "port": 5432,
-    "username": "yrklctjuzeopko",
-    "password": "e10d9894322718fb9abf006dcc587dd0f996832198c349d3321142c21e0591a2",
-    "database": "d2284pq7309nbd",
+    "username": "krmsewrs",
+    "password": "rUvisAlRXoTGJ7G5NrRVHSY87IOAPkZP",
+
+    
 
 
     "migrations":[

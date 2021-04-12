@@ -25,7 +25,7 @@ export class imgProjetos1615689999270 implements MigrationInterface {
             foreignKeys: [
                 {
                     name: 'projeto_id',
-                    columnNames: ['projeto_id'],
+                    columnNames: ['Projeto_id'],
                     referencedTableName: 'projetos',
                     referencedColumnNames: ['projeto_id'],
                     onDelete: 'CASCADE',

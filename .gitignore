@@ -22,3 +22,4 @@ yarn-error.log
 /uploads/posts/resized/*.jpeg
 /uploads/posts/resized/*.gif
 /uploads/posts/resized/*.svg
+.env

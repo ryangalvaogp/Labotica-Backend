@@ -1,6 +1,15 @@
 {
-    "type":"sqlite",
-    "database":"./src/database/database.sqlite",
+    "url":"postgres://krmsewrs:rUvisAlRXoTGJ7G5NrRVHSY87IOAPkZP@tuffi.db.elephantsql.com:5432/krmsewrs",
+    "type":"postgres",
+    "name": "default",
+    "host": "tuffi.db.elephantsql.com",
+    "port": 5432,
+    "username": "krmsewrs",
+    "password": "rUvisAlRXoTGJ7G5NrRVHSY87IOAPkZP",
+
+    
+
+
     "migrations":[
         "./src/database/migrations/*ts"
     ],

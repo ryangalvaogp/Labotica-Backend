@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn} from "typeorm";
 import Projetos from "./Projetos";
-@Entity({name:'ImgProjetos'})
+@Entity({name:'imgProjetos'})
 export default class ImgProjetos {
     @PrimaryColumn()
     id:string;
@@ -9,7 +9,10 @@ export default class ImgProjetos {
     caminho:string;
 
     @Column()
-    imgDefault:boolean
+    imgDefault:boolean;
+
+    @Column()
+    url:string;
 
     @ManyToOne(()=> Projetos, projeto=>projeto.images)
     @JoinColumn({name:'Projeto_id'})

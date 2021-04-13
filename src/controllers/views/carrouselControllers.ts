@@ -6,9 +6,9 @@ export default {
     async index(req: Request, res: Response) {
         const projetosRepository = getRepository(Projetos);
         const projetos = await projetosRepository.query(`
-        select * from projetos, imgProjetos 
-        where projetos.projeto_id=imgProjetos.Projeto_id
-        and carrousel=1
+        select * from "projetos", "imgProjetos" 
+        where "projetos"."projeto_id"="imgProjetos"."Projeto_id"
+        and "carrousel"=true
         `);
 
         const projetosOnCarrousel = projetos.map((projeto: any) => {
@@ -19,6 +19,7 @@ export default {
                 carrousel,
                 caminho,
                 id,
+                url
             } = projeto;
 
             const data = {
@@ -28,6 +29,7 @@ export default {
                 titulo,
                 caminho,
                 carrousel: Boolean(carrousel),
+                url
             }
             return data;
         })

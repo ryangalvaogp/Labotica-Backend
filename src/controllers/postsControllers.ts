@@ -9,6 +9,7 @@ import { getRepository } from 'typeorm';
 import { getUsuario } from '../config/functions/getUsuario';
 import { getPostOfUsuarioForValidateWithAuthorization, getProjetoOfUsuarioForValidateWithAuthorization } from '../config/functions/getProjetoOfUsuarioForValidateWithAuthorization';
 import Usuarios from '../models/Usuarios';
+import { DeleteImageInAwS3 } from '../config/functions/DeleteImageInAwS3';
 
 export default {
     async index(req: Request, res: Response) {
@@ -27,6 +28,7 @@ export default {
                 place,
                 post_Id,
                 titulo,
+                url
             } = post;
 
             const {
@@ -49,6 +51,7 @@ export default {
                 data: DateTime
                     .fromISO(createdAt.toISOString())
                     .toLocaleString(DateTime.DATETIME_SHORT),
+                url,
             }
             return dataSelected;
         });
@@ -61,23 +64,12 @@ export default {
             place,
         } = req.body;
 
-        const usuario_Id = req.headers.authorization;
-        const { filename: image } = req.file;
-        const [name] = image.split('.');
-        const filename = `${name}.jpg`;
-
-        try {
-            await sharp(req.file.path)
-                .resize(500)
-                .jpeg({ quality: 70, })
-                .toFile(
-                    path.resolve(req.file.destination, 'resized', filename)
-                );
-
-            fs.unlinkSync(req.file.path);
-        } catch (error) {
-            console.log(error);
-        };
+        const usuario_Id = req.headers.authorization;//@ts-ignore
+        const {
+            //@ts-expect-error
+            key: filename, //@ts-expect-error
+            location: url = ''
+        } = req.file;
 
         const data = {
             usuario_Id,
@@ -87,6 +79,7 @@ export default {
             description,
             place,
             image: filename,
+            url,
         };
 
         try {
@@ -114,6 +107,7 @@ export default {
         } catch (error) {
             return res.status(403).json(error);
         };
+
     },
     async delete(req: Request, res: Response) {
         const Authorization = req.headers.authorization;
@@ -135,15 +129,7 @@ export default {
                 );
                 try {
                     (await deletePostImages).map((image) => {
-                        fs.unlinkSync(
-                            path.join(
-                                __dirname,
-                                '..',
-                                '..',
-                                'uploads',
-                                'posts',
-                                'resized',
-                                image.image));
+                        DeleteImageInAwS3(image.image);
                     });
                     await postRepository.delete(id);
 
@@ -166,15 +152,7 @@ export default {
                     );
                     try {
                         (await deletePostImages).map((image) => {
-                            fs.unlinkSync(
-                                path.join(
-                                    __dirname,
-                                    '..',
-                                    '..',
-                                    'uploads',
-                                    'posts',
-                                    'resized',
-                                    image.image));
+                           DeleteImageInAwS3(image.image)
                         });
                         await postRepository.delete(id);
 
@@ -221,6 +199,7 @@ export default {
                 description,
                 place,
                 image,
+                url
             } = post;
 
             let dataSelected = {
@@ -233,9 +212,11 @@ export default {
                 data: DateTime
                     .fromISO(post.createdAt.toISOString())
                     .toLocaleString(DateTime.DATETIME_SHORT),
+                url,
             };
             return dataSelected;
         });
         return res.json(postUser);
     },
 };
+

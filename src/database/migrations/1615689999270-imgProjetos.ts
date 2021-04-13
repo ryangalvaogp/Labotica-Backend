@@ -13,6 +13,7 @@ export class imgProjetos1615689999270 implements MigrationInterface {
                     name: 'caminho',
                     type: 'varchar',
                 },
+                
                 {
                     name: 'imgDefault',
                     type: 'boolean'
@@ -20,6 +21,10 @@ export class imgProjetos1615689999270 implements MigrationInterface {
                 {
                     name: 'Projeto_id',
                     type: 'varchar'
+                },
+                {
+                    name:'url',
+                    type:'varchar'
                 },
             ],
             foreignKeys: [

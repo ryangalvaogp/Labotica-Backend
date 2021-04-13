@@ -7,18 +7,19 @@ export default {
     async listAllPostsAlunos(req: Request, res: Response) {
         const PostRepository = getRepository(Post);
         const posts = await PostRepository.query(
-            `select post_Id,
-              titulo,
-              createdAt,
-              description,
-              place,
-              name,
-              funcao,
-              email,
-              image 
-              from post, usuarios 
-              where post.usuario_Id=usuarios.usuario_Id 
-              and usuarios.funcao="Aluno"`
+            `select "post_Id",
+            "titulo",
+            "createdAt",
+            "description",
+            "place",
+            "url"
+            "name",
+            "funcao",
+            "email",
+            "image" 
+            from "post", "usuarios" 
+            where "post"."usuario_Id"="usuarios"."usuario_Id" 
+            and "usuarios"."funcao"='Aluno'`
         );
 
         let allPostAlunos = posts.map((post: any) => {
@@ -32,6 +33,7 @@ export default {
                 name,
                 funcao,
                 email,
+                url
             } = post;
 
             const dataS = {
@@ -48,6 +50,7 @@ export default {
                 data: DateTime
                     .fromISO(new Date(createdAt).toISOString())
                     .toLocaleString(DateTime.DATETIME_SHORT),
+                url,
             }
             return dataS;
         });
@@ -56,18 +59,19 @@ export default {
     async listAllPostsProfessores(req: Request, res: Response) {
         const PostRepository = getRepository(Post);
         const posts = await PostRepository.query(
-            `select post_Id,
-              titulo,
-              createdAt,
-              description,
-              place,
-              name,
-              funcao,
-              email,
-              image 
-              from post, usuarios 
-              where post.usuario_Id=usuarios.usuario_Id 
-              and usuarios.funcao="Professor"`
+            `select "post_Id",
+            "titulo",
+            "createdAt",
+            "description",
+            "place",
+            "name",
+            "funcao",
+            "email",
+            "image",
+            "url"
+            from "post", "usuarios" 
+            where "post"."usuario_Id"="usuarios"."usuario_Id" 
+            and "usuarios"."funcao"='Professor'`
         );
 
         let allPostProfessor = posts.map((post: any) => {
@@ -81,6 +85,7 @@ export default {
                 funcao,
                 email,
                 createdAt,
+                url,
             } = post;
 
             const dataS = {
@@ -97,6 +102,7 @@ export default {
                 data: DateTime
                     .fromISO(new Date(createdAt).toISOString())
                     .toLocaleString(DateTime.DATETIME_SHORT),
+                url,
             }
             return dataS;
         })

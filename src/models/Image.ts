@@ -9,7 +9,10 @@ export default class ImgProjetos {
     caminho:string;
 
     @Column()
-    imgDefault:boolean
+    imgDefault:boolean;
+
+    @Column()
+    url:string;
 
     @ManyToOne(()=> Projetos, projeto=>projeto.images)
     @JoinColumn({name:'Projeto_id'})

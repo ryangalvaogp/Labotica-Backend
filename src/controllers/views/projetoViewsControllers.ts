@@ -7,6 +7,8 @@ export default {
     async allProjetosOfUser(req: Request, res: Response) {
         const { id } = req.params;
         const projetosRepository = getRepository(Projetos);
+       
+       try {
         const projetos = (await projetosRepository.findOneOrFail(
             {
                 relations: ["images"],
@@ -16,6 +18,10 @@ export default {
             }
         ));
         return res.json(projetos);
+       } catch (error) {
+        return res.json(error);
+       }
+       
     },
     async imagesOfProjetoOfUser(req: Request, res: Response) {
         const { id } = req.params

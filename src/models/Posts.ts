@@ -21,7 +21,10 @@ export default class Post {
     image:string;
 
     @Column()
-    createdAt:Date;     
+    createdAt:Date;   
+      
+    @Column()
+    url:string;
 
     @ManyToOne(()=> Usuarios, usuario=>usuario.posts)
     @JoinColumn({name:'usuario_Id'})

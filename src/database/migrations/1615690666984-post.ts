@@ -33,6 +33,10 @@ export class post1615690666984 implements MigrationInterface {
                     name: 'createdAt',
                     type: 'date'
                 },
+                {
+                    name:'url',
+                    type:'varchar'
+                },
             ],
             foreignKeys: [
                 {
